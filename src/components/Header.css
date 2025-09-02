@@ -17,7 +17,7 @@
 .header-logo {
     font-weight: 600;
     /* font-style: SemiBold; */
-    font-size: 14px;
+    font-size: 12px;
     /* leading-trim: NONE; */
     line-height: 16px;
     /* letter-spacing: -1px; */
@@ -29,7 +29,7 @@
     /* font-family: Roobert TRIAL; */
     font-weight: 600;
     /* font-style: Semi-bold; */
-    font-size: 14px;
+    font-size: 12px;
     /* leading-trim: NONE; */
     line-height: 16px;
     letter-spacing: -2%;
@@ -47,4 +47,9 @@
     justify-content: center;
     margin-right: 32px;
     border: none;
+    transition: all 300ms ease;
+}
+
+.header-btn:hover {
+    opacity: 50%;
 }

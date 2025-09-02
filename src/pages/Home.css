@@ -14,14 +14,20 @@
     /* leading-trim: NONE; */
     line-height: 120px;
     letter-spacing: -7px;
-    text-align: center;
     max-width: 680px;
+}
+
+.title-top {
+    top: 31vh;
+}
+.title-bottom {
+    top: 48vh;
 }
 
 .about-text {
     font-weight: 400;
     font-style: Regular;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     letter-spacing: 0%;
     text-transform: uppercase;
@@ -29,5 +35,61 @@
     bottom: 32px;
     left: 32px;
     max-width: 360px;
+}
 
+.rect {
+    position: absolute;
+    width: 15vw;
+}
+
+.rect-right {
+    right: 0;
+    
+}
+
+.rect-left {
+    left: 0;
+}
+
+.btn-left {
+    position: absolute;
+    left: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-right {
+    position: absolute;
+    right: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #1A1B1C;
+    background: none;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon > * {
+    transform: rotate(-45deg);
+}
+
+.btn-label {
+    font-size: 12px;
+    opacity: 60%;
+    font-weight: 600;
+}
+
+.icon-left {
+    margin-right: 24px;
+}
+
+.icon-right {
+    margin-left: 24px;
 }
