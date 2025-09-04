@@ -15,6 +15,8 @@
     line-height: 120px;
     letter-spacing: -7px;
     max-width: 680px;
+    text-align: center;
+    margin: 0 32px;
 }
 
 .title-top {
@@ -51,6 +53,14 @@
     left: 0;
 }
 
+.rect_2 {
+    width: 18vw;
+}
+
+.rect_3 {
+    width: 21vw;
+}
+
 .btn-left {
     position: absolute;
     left: 32px;
@@ -74,6 +84,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 300ms ease;
+}
+
+.btn-dash {
+    position: absolute;
+    right: 31px;
+    border: 1px dashed black;
+    width: 35px;
+    height: 35px;
+    transform: rotate(45deg);
+    background: none;
 }
 
 .btn-icon > * {
@@ -84,6 +105,7 @@
     font-size: 12px;
     opacity: 60%;
     font-weight: 600;
+    transition: all 300ms ease;
 }
 
 .icon-left {

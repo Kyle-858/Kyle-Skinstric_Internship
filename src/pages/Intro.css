@@ -1,0 +1,112 @@
+.rect-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rect_intro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.rect_intro_3 {
+    max-height: 90%;
+}
+
+.rect_intro_2 {
+    height: 80%;
+}
+
+.rect_intro_1 {
+    height: 70%;
+}
+
+.back {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 92px;
+    cursor: pointer;
+}
+
+.back-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #1A1B1C;
+    background: none;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+}
+
+.back-btn > * {
+    transform: rotate(-45deg);
+    transition: all 300ms ease;
+}
+
+.back:hover .back-btn > * {
+    transform: rotate(-45deg) scale(.8);
+}
+
+.back-label {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: .6;
+    transition: all 300ms ease;
+}
+
+.back:hover .back-label {
+    opacity: 1;
+    transform: translateX(6px)
+}
+.back:hover .back-btn {
+    transform: rotate(45deg) scale(1.2);
+}
+
+.input-feild {
+    position: absolute;
+    height: 76px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-label {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: .5;
+}
+
+.name-input {
+    background: none;
+    border: none;
+    font-size: 48px;
+    text-align: center;
+    color: #1A1B1C;
+    border-bottom: 2px solid #1A1B1C;
+    width: 400px;
+}
+.name-input::placeholder {
+    color: #1A1B1C;
+    transition: all 300ms ease;
+}
+.name-input:focus::placeholder {
+  opacity: 0;
+}
+.name-input:focus {
+    outline: none;
+}
