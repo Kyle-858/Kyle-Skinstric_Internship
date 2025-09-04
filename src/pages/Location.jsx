@@ -7,10 +7,10 @@ import arrow_left from '../assets/arrow_left.svg'
 import arrow_right from '../assets/arrow_right.svg'
 import { useNavigate, Link } from 'react-router-dom'
 
-const Intro = () => {
+const Location = () => {
 
     const navigate = useNavigate()
-    const [inputName, setInputName] = useState('')
+    const [inputLocation, setInputLocation] = useState('')
 
   return (
     <div className="intro-container">
@@ -27,10 +27,10 @@ const Intro = () => {
         </div>
         <div className="input-feild">
             <span className="input-label">CLICK TO TYPE</span>
-            <input className="name-input" value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" placeHolder="Introduce Yourself"/>
+            <input className="name-input" value={inputLocation} onChange={(e) => setInputLocation(e.target.value)} type="text" placeHolder="WHERE ARE YOU FROM?"/>
         </div>
-        <Link to="/location">
-            <div className={`proceed ${inputName ? 'OpacIn' : 'OpacOut'}`}>
+        <Link to="/upload">
+            <div className={`proceed ${inputLocation ? 'OpacIn' : 'OpacOut'}`}>
                 <span className="proceed-label">PROCEED</span>
                 <button className="proceed-btn">
                     <img src={arrow_right} alt=""/>
@@ -41,4 +41,4 @@ const Intro = () => {
   )
 }
 
-export default Intro
+export default Location

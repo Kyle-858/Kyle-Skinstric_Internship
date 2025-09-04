@@ -6,6 +6,7 @@ const Header = () => {
 
     const location = useLocation()
     const isIntroPage = location.pathname === '/intro'
+    const isHomePage = location.pathname === '/'
 
   return (
     <div className="header">
@@ -13,8 +14,8 @@ const Header = () => {
         <div className="header-logo">SKINSTRIC</div>
         <div className="header-part">[ INTRO ]</div>
       </div>
-      <button className={`header-btn ${isIntroPage ? 'fade-out' : 'fade-in'}`}>ENTER CODE</button>
-    <span className="intro-header">TO START ANALYSIS</span>
+      <button className={`header-btn ${isHomePage ? 'fade-in' : 'fade-out'}`}>ENTER CODE</button>
+    <span className={`intro-header ${isIntroPage ? 'fade-in' : 'fade-out'}`}>TO START ANALYSIS</span>
     </div>
   )
 }
