@@ -3,8 +3,8 @@ import './Loading.css'
 
 const Loading = () => {
   return (
-    <div>
-      Loading
+    <div className="loading-screen">
+      PREPARING YOUR ANALYSIS...
     </div>
   )
 }

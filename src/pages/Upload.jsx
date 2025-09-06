@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import arrow_left from '../assets/arrow_left.svg'
 import gallery from '../assets/gallery.svg'
 import camera from '../assets/camera.svg'
+import Loading from '../components/Loading.jsx'
+import axios from 'axios'
 
 import './Upload.css'
 
@@ -21,7 +23,7 @@ const Upload = () => {
 
     const reader = new FileReader()
 
-    reader.onLoadend = async () => {
+    reader.onloadend = async () => {
       const base64Image = reader.result.split(',')[1]
 
       try {
@@ -32,6 +34,8 @@ const Upload = () => {
         console.log('Image upload successful!', res.data)
       } catch (err) {
         console.error(err)
+      } finally {
+        setLoading(false)
       }
     }
     
@@ -40,14 +44,14 @@ const Upload = () => {
   
   return (
     <>
-      <div className="upload-row">
+      {loading ? <Loading/> : <div className="upload-row">
         <div className="option-wrapper option-camera">
           <img className="upload-option" src={camera} alt="" />
         </div>
         <div className="option-wrapper option-gallery">
           <img className="upload-option" src={gallery} alt="" onClick={() => fileInputRef.current.click()}/>
         </div>
-      </div>
+      </div>}
       <input
         type="file"
         accept="image/*"
