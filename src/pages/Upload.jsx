@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import arrow_left from '../assets/arrow_left.svg'
 import gallery from '../assets/gallery.svg'
@@ -9,6 +9,34 @@ import './Upload.css'
 const Upload = () => {
 
   const navigate = useNavigate()
+  const fileInputRef = useRef(null)
+  const [loading, setLoading] = useState(false)
+
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    setLoading(true)
+
+    const reader = new FileReader()
+
+    reader.onLoadend = async () => {
+      const base64Image = reader.result.split(',')[1]
+
+      try {
+      const res = await axios.post(
+        "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo", {
+          image: base64Image,
+        })
+        console.log('Image upload successful!', res.data)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    
+    reader.readAsDataURL(file)
+  }
   
   return (
     <>
@@ -17,9 +45,16 @@ const Upload = () => {
           <img className="upload-option" src={camera} alt="" />
         </div>
         <div className="option-wrapper option-gallery">
-          <img className="upload-option" src={gallery} alt="" />
+          <img className="upload-option" src={gallery} alt="" onClick={() => fileInputRef.current.click()}/>
         </div>
       </div>
+      <input
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+      />
 
         <div className="back" onClick={() => navigate(-1)}>
             <button className="back-btn">
