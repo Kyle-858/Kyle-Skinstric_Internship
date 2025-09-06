@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './Intro.css'
 import rect_intro_1 from '../assets/rect_intro_1.svg'
 import rect_intro_2 from '../assets/rect_intro_2.svg'
@@ -7,10 +7,18 @@ import arrow_left from '../assets/arrow_left.svg'
 import arrow_right from '../assets/arrow_right.svg'
 import { useNavigate, Link } from 'react-router-dom'
 
-const Intro = () => {
+const Intro = ({ inputName, setInputName }) => {
 
     const navigate = useNavigate()
-    const [inputName, setInputName] = useState('')
+    const textMeasureRef = useRef(null)
+    const underlineRef = useRef(null)
+
+    useEffect(() => {
+    if (textMeasureRef.current && underlineRef.current) {
+      const width = textMeasureRef.current.offsetWidth
+      underlineRef.current.style.width = `${width}px`
+    }
+  }, [inputName])
 
   return (
     <div className="intro-container">
@@ -27,10 +35,16 @@ const Intro = () => {
         </div>
         <div className="input-feild">
             <span className="input-label">CLICK TO TYPE</span>
-            <input className="name-input" value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" placeHolder="Introduce Yourself"/>
+            <div className="underline-wrapper">
+                <input className="name-input" value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" placeholder="Introduce Yourself"/>
+                <span className="text-measure" ref={textMeasureRef}>
+                    {inputName || 'Introduce Yourself'}
+                </span>
+                <div className="dynamic-underline" ref={underlineRef}></div>
+            </div>
         </div>
-        <Link to="/location">
-            <div className={`proceed ${inputName ? 'OpacIn' : 'OpacOut'}`}>
+        <Link to="/location" name={inputName}>
+            <div className={`proceed ${inputName ? 'fade-in' : 'fade-out'}`}>
                 <span className="proceed-label">PROCEED</span>
                 <button className="proceed-btn">
                     <img src={arrow_right} alt=""/>

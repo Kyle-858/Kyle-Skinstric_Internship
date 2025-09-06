@@ -11,7 +11,8 @@ import Upload from './pages/Upload.jsx'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [inputLocation, setInputLocation] = useState('')
+  const [inputName, setInputName] = useState('')
 
   return (
     <>
@@ -19,8 +20,8 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/intro" element={<Intro/>}/>
-          <Route path="/location" element={<Location/>}/>
+          <Route path="/intro" element={<Intro inputName={inputName} setInputName={setInputName}/>}/>
+          <Route path="/location" element={<Location inputName={inputName} inputLocation={inputLocation} setInputLocation={setInputLocation}/>} />
           <Route path="/upload" element={<Upload/>}/>
         </Routes>
       </Router>

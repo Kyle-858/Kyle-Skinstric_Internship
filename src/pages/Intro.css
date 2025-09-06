@@ -75,7 +75,7 @@
 
 .input-feild {
     position: absolute;
-    height: 76px;
+    height: 60px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -91,16 +91,62 @@
     opacity: .5;
 }
 
-.name-input {
-    background: none;
-    border: none;
-    font-size: 36px;
-    text-align: center;
-    color: #1A1B1C;
-    text-decoration: underline;
-    /* border-bottom: 2px solid #1A1B1C; */
-    /* width: 400px; */
+.underline-wrapper {
+  position: relative;
+  display: inline-block;
 }
+
+.name-input {
+  /* position: relative;
+  background: none;
+  border: none;
+  font-size: 36px;
+  text-align: center;
+  color: #1A1B1C; */
+  background: none;
+  border: none;
+  font-size: 36px;
+  text-align: center;
+  color: #1A1B1C;
+  outline: none;
+  position: relative;
+  z-index: 2;
+
+}
+
+.text-measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36px;
+  visibility: hidden;
+  white-space: pre;
+  pointer-events: none;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.dynamic-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background-color: #1A1B1C;
+  transition: width 0.2s ease;
+  z-index: 1;
+}
+
+.name-input::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #1A1B1C;
+}
+
 .name-input::placeholder {
     color: #1A1B1C;
     transition: all 300ms ease;
@@ -150,6 +196,7 @@
     font-weight: 600;
     opacity: .6;
     transition: all 300ms ease;
+    color: #1A1B1C;
 }
 
 .proceed:hover .proceed-label {
@@ -158,12 +205,4 @@
 }
 .proceed:hover .proceed-btn {
     transform: rotate(45deg) scale(1.2);
-}
-
-.OpacIn {
-    opacity: 1;
-}
-
-.OpacOut {
-    opacity: 0;
 }
