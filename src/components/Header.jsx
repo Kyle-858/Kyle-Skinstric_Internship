@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 const Header = () => {
 
     const location = useLocation()
-    const isIntroPage = location.pathname === '/intro'
+    const isIntroPage = location.pathname === '/intro' || '/location'
     const isHomePage = location.pathname === '/'
 
   return (

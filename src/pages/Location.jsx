@@ -32,6 +32,7 @@ const Location = ({ inputName, inputLocation, setInputLocation }) => {
             )
             console.log(res.data)
             console.log('Success! Added', inputName, "from", inputLocation)
+            navigate('/upload')
         } catch (error) {
             console.error(error)
         }
@@ -53,21 +54,19 @@ const Location = ({ inputName, inputLocation, setInputLocation }) => {
         <div className="input-feild">
             <span className="input-label">CLICK TO TYPE</span>
             <div className="underline-wrapper">
-                <input className="name-input" value={inputLocation} onChange={(e) => setInputLocation(e.target.value)} type="text" placeholder="WHERE ARE YOU FROM?"/>
+                <input className="name-input" value={inputLocation} onChange={(e) => setInputLocation(e.target.value)} type="text" placeholder="Where are you from?"/>
                 <span className="text-measure" ref={textMeasureRef}>
-                    {inputLocation || 'WHERE ARE YOU FROM?'}
+                    {inputLocation || 'Where are you from?'}
                 </span>
                 <div className="dynamic-underline" ref={underlineRef}></div>
             </div>
         </div>
-        <Link to="/upload">
             <div className={`proceed ${inputLocation ? 'fade-in' : 'fade-out'}`} onClick={(e) => submitInfo(e)}>
                 <span className="proceed-label">PROCEED</span>
                 <button className="proceed-btn">
                     <img src={arrow_right} alt=""/>
                 </button>
             </div>
-        </Link>
     </div>
   )
 }
