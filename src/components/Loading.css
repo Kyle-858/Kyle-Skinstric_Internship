@@ -5,3 +5,44 @@
     align-items: center;
     justify-content: center;
 }
+
+.loading-text {
+    position: absolute;
+    font-weight: 600;
+}
+
+.load-rect {
+    position: absolute;
+    border: 2px dashed #b1b1b1;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(180deg); }
+}
+
+.loading-rect-1 {
+    height: 360px;
+    width: 360px;
+    animation: spin 3s linear infinite;
+    animation-delay: 1s;
+}
+
+.loading-rect-2 {
+    height: 400px;
+    width: 400px;
+    animation: spin 3s linear infinite;
+    animation-delay: 2s;
+    opacity: 90%;
+}
+
+.loading-rect-3 {
+    height: 440px;
+    width: 440px;
+    animation: spin 3s linear infinite;
+    animation-delay: 3s;
+    opacity: 80%;
+}
+
+
+

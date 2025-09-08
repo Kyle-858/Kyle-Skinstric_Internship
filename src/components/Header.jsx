@@ -5,8 +5,9 @@ import { useLocation } from 'react-router-dom'
 const Header = () => {
 
     const location = useLocation()
-    const isIntroPage = location.pathname === '/intro' || '/location'
+    const isIntroPage = location.pathname === '/intro'
     const isHomePage = location.pathname === '/'
+    const isResultsPage = location.pathname === '/results'
 
   return (
     <div className="header">
@@ -16,6 +17,7 @@ const Header = () => {
       </div>
       <button className={`header-btn ${isHomePage ? 'fade-in' : 'fade-out'}`}>ENTER CODE</button>
     <span className={`intro-header ${isIntroPage ? 'fade-in' : 'fade-out'}`}>TO START ANALYSIS</span>
+    <span className={`intro-header ${isResultsPage ? 'fade-in' : 'fade-out'}`}>A.I. ANALYSIS</span>
     </div>
   )
 }

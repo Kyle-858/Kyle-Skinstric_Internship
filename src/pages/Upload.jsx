@@ -32,13 +32,13 @@ const Upload = () => {
           image: base64Image,
         })
         console.log('Image upload successful!', res.data)
+        navigate('/results')
       } catch (err) {
         console.error(err)
       } finally {
         setLoading(false)
       }
     }
-    
     reader.readAsDataURL(file)
   }
   
@@ -60,12 +60,12 @@ const Upload = () => {
         onChange={handleFileUpload}
       />
 
-        <div className="back" onClick={() => navigate(-1)}>
+        {loading ? '' : <div className="back" onClick={() => navigate(-1)}>
             <button className="back-btn">
                 <img src={arrow_left} alt=""/>
             </button>
             <span className="back-label">BACK</span>
-        </div>
+        </div>}
     </>
   )
 }

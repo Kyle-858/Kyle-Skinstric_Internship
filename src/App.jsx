@@ -8,6 +8,8 @@ import Header from './components/Header.jsx'
 import Intro from './pages/Intro.jsx'
 import Location from './pages/Location.jsx'
 import Upload from './pages/Upload.jsx'
+import Results from './pages/Results.jsx'
+import Demographics from './pages/Demographics.jsx'
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/intro" element={<Intro inputName={inputName} setInputName={setInputName}/>}/>
           <Route path="/location" element={<Location inputName={inputName} inputLocation={inputLocation} setInputLocation={setInputLocation}/>} />
           <Route path="/upload" element={<Upload/>}/>
+          <Route path="/results" element={<Results/>}/>
+          <Route path="/demographics" element={<Demographics/>}/>
         </Routes>
       </Router>
     </>

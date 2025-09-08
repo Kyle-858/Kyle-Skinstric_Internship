@@ -1,0 +1,63 @@
+.results-row {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.res-wrapper {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    max-height: 100vh;
+    max-width: 100vh;
+}
+
+.rombuses-results {
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+.res-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    width: 50%;
+    height: 50%;
+}
+
+.res-option {
+    background-color: rgb(231, 231, 232, 0.4);
+    width: 95%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+    position: relative;
+}
+
+.res-option > * {
+    transform: rotate(-45deg);
+}
+
+.option-text {
+    text-align: center;
+    font-weight: 600;
+    max-width: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.res-option:hover {
+    background-color: rgb(231, 231, 232, 1);
+    cursor: pointer;
+}
