@@ -37,6 +37,19 @@ const Demographics = () => {
         .join(' ')
     }
 
+    const [selectedStat, setSelectedStat] = useState(topRace)
+
+    function handleObjSelected(obj) {
+      setObjSelected(obj)
+      if (obj === 'race') {
+        setSelectedStat(topRace)
+      } else if (obj === 'age') {
+        setSelectedStat(topAge)
+      } else if (obj === 'gender') {
+        setSelectedStat(topSex)
+      }
+    }
+
   return (
     <>
         <div className="back" onClick={() => navigate(-1)}>
@@ -47,21 +60,21 @@ const Demographics = () => {
         </div>
         <div className="demo-row">
           <div className="demo-list">
-            <div className={`demo-list-obj ${objSelected === 'race' ? 'selected-lo' : ''}`} onClick={() => setObjSelected('race')}>
+            <div className={`demo-list-obj ${objSelected === 'race' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('race')}>
               <span className="demo-text demo-text-top">{topRace.toUpperCase()}</span>
               <span className="demo-text demo-text-bottom">RACE</span>
             </div>
-            <div className={`demo-list-obj ${objSelected === 'age' ? 'selected-lo' : ''}`} onClick={() => setObjSelected('age')}>
+            <div className={`demo-list-obj ${objSelected === 'age' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('age')}>
               <span className="demo-text demo-text-top">{topAge}</span>
               <span className="demo-text demo-text-bottom">AGE</span>
             </div>
-            <div className={`demo-list-obj ${objSelected === 'gender' ? 'selected-lo' : ''}`} onClick={() => setObjSelected('gender')}>
+            <div className={`demo-list-obj ${objSelected === 'gender' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('gender')}>
               <span className="demo-text demo-text-top">{topSex.toUpperCase()}</span>
               <span className="demo-text demo-text-bottom">SEX</span>
             </div>
           </div>
           <div className="demo-percentage">
-            <span className="percent-title"></span>
+            <h3 className="percent-title">{toTitleCase(selectedStat)}</h3>
           </div>
           <div className="stats-list">
             <div className="stats-header">
@@ -70,8 +83,8 @@ const Demographics = () => {
             </div>
             <div className="demo-stats">
             {objSelected === 'race' ? 
-            (Object.entries(resultData?.data.race).map(([raceName, percentage]) => (
-              <div className="stat" key={raceName}>
+            (Object.entries(resultData?.data.race).sort((a, b) => b[1] - a[1]).map(([raceName, percentage]) => (
+              <div className={`stat ${selectedStat === raceName ? 'selected-stat' : ''}`} key={raceName} onClick={() => setSelectedStat(raceName)}>
                 <img src={radio_button} alt="" className="stat-diamond" />
                 <div className="stat-text">
                   <span>{toTitleCase(raceName)}</span>
@@ -80,8 +93,8 @@ const Demographics = () => {
               </div>
             ))) : ''}
             {objSelected === 'age' ? 
-            (Object.entries(resultData?.data.age).map(([ageName, percentage]) => (
-              <div className="stat" key={ageName}>
+            (Object.entries(resultData?.data.age).sort((a, b) => b[1] - a[1]).map(([ageName, percentage]) => (
+              <div className={`stat ${selectedStat === ageName ? 'selected-stat' : ''}`} key={ageName} onClick={() => setSelectedStat(ageName)}>
                 <img src={radio_button} className="stat-diamond" alt="" />
                 <div className="stat-text">
                   <span>{ageName}</span>
@@ -90,8 +103,8 @@ const Demographics = () => {
               </div>
             ))) : ''}
             {objSelected === 'gender' ? 
-            (Object.entries(resultData?.data.gender).map(([genderName, percentage]) => (
-              <div className="stat" key={genderName}>
+            (Object.entries(resultData?.data.gender).sort((a, b) => b[1] - a[1]).map(([genderName, percentage]) => (
+              <div className={`stat ${selectedStat === genderName ? 'selected-stat' : ''}`} key={genderName} onClick={() => setSelectedStat(genderName)}>
                 <img src={radio_button} className="stat-diamond" alt="" />
                 <div className="stat-text">
                   <span>{genderName}</span>

@@ -47,9 +47,15 @@
 }
 
 .demo-percentage {
-    border: 2px solid green;
+    border-top: 2px solid grey;
     width: 53%;
     height: 100%;
+}
+.percent-title {
+    font-size: 36px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-left: 12px;
 }
 
 .stats-list {
@@ -78,7 +84,7 @@
     transition: all 300ms ease;
 }
 .stat-diamond {
-    margin-left: 12px;
+    margin-left: 14px;
 }
 .stat:hover {
     background-color: #E1E1E2;
@@ -89,4 +95,11 @@
     width: 100%;
     justify-content: space-between;
     margin: 12px;
+}
+.selected-stat {
+    background-color: black;
+    color: white;
+}
+.selected-stat:hover {
+    background-color: black;
 }
