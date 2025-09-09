@@ -59,10 +59,8 @@
     margin-top: 12px;
     margin-left: 12px;
 }
-.percent-num {
-    position: absolute;;
-    bottom: 64px;
-    right: 64px;
+.percent-text {
+    position: absolute;
     z-index: 3;
     left: 50%;
     top: 50%;
@@ -70,8 +68,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    width: 100px;
+    height: 100px;
+}
+.percent-num {
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    font-size: 40px;
     font-weight: 400;
+}
+.percent-text-small {
+    font-size: 24px;
+    text-align: start;
+    margin-bottom: 24px;
 }
 .percent-wrapper {
     height: 300px;

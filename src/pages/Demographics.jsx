@@ -90,7 +90,10 @@ const Demographics = () => {
           <div className="demo-percentage">
             <h3 className="percent-title">{toTitleCase(selectedStat)} {objSelected === 'age' ? 'y.o.' : ''}</h3>
             <div className="percent-wrapper">
-              <h3 className="percent-num">{Math.floor(wheelPercent * 100)}%</h3>
+              <div className="percent-text">
+                <h3 className="percent-num">{Math.floor(wheelPercent * 100)}</h3>
+                <span className="percent-text-small">%</span>
+              </div>
               <div className="circle-outer" style={{ '--percent': `${Math.floor(wheelPercent * 100)}%` }}></div>
               <div className="circle-inner"></div>
             </div>
