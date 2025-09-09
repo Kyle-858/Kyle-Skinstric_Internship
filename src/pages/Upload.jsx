@@ -14,7 +14,6 @@ const Upload = () => {
   const fileInputRef = useRef(null)
   const [loading, setLoading] = useState(false)
 
-
   const handleFileUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -25,13 +24,14 @@ const Upload = () => {
 
     reader.onloadend = async () => {
       const base64Image = reader.result.split(',')[1]
-
+      
       try {
       const res = await axios.post(
         "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo", {
           image: base64Image,
         })
         console.log('Image upload successful!', res.data)
+        localStorage.setItem('resultData', JSON.stringify(res.data))
         navigate('/results')
       } catch (err) {
         console.error('Error uploading image:', err)

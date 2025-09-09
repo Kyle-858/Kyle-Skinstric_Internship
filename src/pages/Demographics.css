@@ -18,7 +18,7 @@
 }
 
 .demo-list-obj {
-    border-top: 1px solid black;
+    border-top: 2px solid grey;
     background-color: #F3F3F4;
     height: 80px;
     width: 100%;
@@ -40,6 +40,7 @@
 .selected-lo {
     background-color: black;
     color: white;
+    border-top: 2px solid black;
 }
 .selected-lo:hover {
     background-color: black;
@@ -52,7 +53,40 @@
 }
 
 .stats-list {
-    border: 2px solid orange;
+    border-top: 2px solid grey;
+    background-color: #F3F3F4;
     width: 30%;
     height: 100%;
+}
+.stats-header {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stats-text {
+    margin: 12px;
+    color: #4e4e4e;
+}
+.stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    transition: all 300ms ease;
+}
+.stat-diamond {
+    margin-left: 12px;
+}
+.stat:hover {
+    background-color: #E1E1E2;
+    cursor: pointer;
+}
+.stat-text {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 12px;
 }

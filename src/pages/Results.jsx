@@ -7,7 +7,8 @@ import arrow_left from '../assets/arrow_left.svg'
 const Results = () => {
 
     const navigate = useNavigate()
-    
+
+
   return (
     <div className='results-row'>
         <div className="back" onClick={() => navigate(-1)}>
