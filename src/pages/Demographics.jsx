@@ -103,7 +103,8 @@ const Demographics = () => {
             <div className="demo-stats">
             {objSelected === 'race' ? 
             (Object.entries(resultData?.data.race).sort((a, b) => b[1] - a[1]).map(([raceName, percentage]) => (
-              <div className={`stat ${selectedRace === raceName ? 'selected-stat' : ''}`} key={raceName} onClick={() => {setSelectedRace(raceName); setWheelPercent(percentage); setSelectedRacePercent(percentage)}}>
+              <div className={`stat ${selectedRace === raceName ? 'selected-stat' : ''}`} key={raceName} onClick={() => {setSelectedRace(raceName); setWheelPercent(percentage); setSelectedRacePercent(percentage); setSelectedStat(raceName)
+}}>
                 {selectedRace === raceName ? <img src={radio_white} alt="" className="stat-diamond" /> : <img src={radio_button} alt="" className="stat-diamond" />}
                 <div className="stat-text">
                   <span>{toTitleCase(raceName)}</span>
@@ -113,7 +114,7 @@ const Demographics = () => {
             ))) : ''}
             {objSelected === 'age' ? 
             (Object.entries(resultData?.data.age).sort((a, b) => b[1] - a[1]).map(([ageName, percentage]) => (
-              <div className={`stat ${selectedAge === ageName ? 'selected-stat' : ''}`} key={ageName} onClick={() => {setSelectedAge(ageName); setWheelPercent(percentage); setSelectedAgePercent(percentage)}}>
+              <div className={`stat ${selectedAge === ageName ? 'selected-stat' : ''}`} key={ageName} onClick={() => {setSelectedAge(ageName); setWheelPercent(percentage); setSelectedAgePercent(percentage); setSelectedStat(ageName)}}>
                 {selectedAge === ageName ? <img src={radio_white} className="stat-diamond" alt="" /> : <img src={radio_button} className="stat-diamond" alt="" />}
                 <div className="stat-text">
                   <span>{ageName}</span>
@@ -123,7 +124,7 @@ const Demographics = () => {
             ))) : ''}
             {objSelected === 'gender' ? 
             (Object.entries(resultData?.data.gender).sort((a, b) => b[1] - a[1]).map(([genderName, percentage]) => (
-              <div className={`stat ${selectedGender === genderName ? 'selected-stat' : ''}`} key={genderName} onClick={() => {setSelectedGender(genderName); setWheelPercent(percentage); setSelectedGenderPercent(percentage)}}>
+              <div className={`stat ${selectedGender === genderName ? 'selected-stat' : ''}`} key={genderName} onClick={() => {setSelectedGender(genderName); setWheelPercent(percentage); setSelectedGenderPercent(percentage); setSelectedStat(genderName)}}>
                 {selectedGender === genderName ? <img src={radio_white} className="stat-diamond" alt="" /> : <img src={radio_button} className="stat-diamond" alt="" />}
                 <div className="stat-text">
                   <span>{genderName}</span>
