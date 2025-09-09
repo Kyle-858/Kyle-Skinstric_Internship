@@ -34,7 +34,7 @@ const Upload = () => {
         console.log('Image upload successful!', res.data)
         navigate('/results')
       } catch (err) {
-        console.error(err)
+        console.error('Error uploading image:', err)
       } finally {
         setLoading(false)
       }
