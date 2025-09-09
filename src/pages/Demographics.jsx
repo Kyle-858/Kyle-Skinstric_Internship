@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import arrow_left from '../assets/arrow_left.svg'
 import './Demographics.css'
 import radio_button from '../assets/radio_button.svg'
+import radio_white from '../assets/radio_white.svg'
+
 
 const Demographics = () => {
 
@@ -38,17 +40,29 @@ const Demographics = () => {
     }
 
     const [selectedStat, setSelectedStat] = useState(topRace)
+    const [selectedRace, setSelectedRace] = useState(topRace)
+    const [selectedAge, setSelectedAge] = useState(topAge)
+    const [selectedGender, setSelectedGender] = useState(topSex)
+    const [selectedRacePercent, setSelectedRacePercent] = useState(topPercentage)
+    const [selectedAgePercent, setSelectedAgePercent] = useState(topAgePercentage)
+    const [selectedGenderPercent, setSelectedGenderPercent] = useState(topSexPercentage)
+    const [wheelPercent, setWheelPercent] = useState(topPercentage)
+
 
     function handleObjSelected(obj) {
       setObjSelected(obj)
       if (obj === 'race') {
-        setSelectedStat(topRace)
+        setSelectedStat(selectedRace)
+        setWheelPercent(selectedRacePercent)
       } else if (obj === 'age') {
-        setSelectedStat(topAge)
+        setSelectedStat(selectedAge)
+        setWheelPercent(selectedAgePercent)
       } else if (obj === 'gender') {
-        setSelectedStat(topSex)
+        setSelectedStat(selectedGender)
+        setWheelPercent(selectedGenderPercent)
       }
     }
+
 
   return (
     <>
@@ -61,20 +75,25 @@ const Demographics = () => {
         <div className="demo-row">
           <div className="demo-list">
             <div className={`demo-list-obj ${objSelected === 'race' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('race')}>
-              <span className="demo-text demo-text-top">{topRace.toUpperCase()}</span>
+              <span className="demo-text demo-text-top">{selectedRace.toUpperCase()}</span>
               <span className="demo-text demo-text-bottom">RACE</span>
             </div>
             <div className={`demo-list-obj ${objSelected === 'age' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('age')}>
-              <span className="demo-text demo-text-top">{topAge}</span>
+              <span className="demo-text demo-text-top">{selectedAge}</span>
               <span className="demo-text demo-text-bottom">AGE</span>
             </div>
             <div className={`demo-list-obj ${objSelected === 'gender' ? 'selected-lo' : ''}`} onClick={() => handleObjSelected('gender')}>
-              <span className="demo-text demo-text-top">{topSex.toUpperCase()}</span>
+              <span className="demo-text demo-text-top">{selectedGender.toUpperCase()}</span>
               <span className="demo-text demo-text-bottom">SEX</span>
             </div>
           </div>
           <div className="demo-percentage">
-            <h3 className="percent-title">{toTitleCase(selectedStat)}</h3>
+            <h3 className="percent-title">{toTitleCase(selectedStat)} {objSelected === 'age' ? 'y.o.' : ''}</h3>
+            <div className="percent-wrapper">
+              <h3 className="percent-num">{Math.floor(wheelPercent * 100)}%</h3>
+              <div className="circle-outer" style={{ '--percent': `${Math.floor(wheelPercent * 100)}%` }}></div>
+              <div className="circle-inner"></div>
+            </div>
           </div>
           <div className="stats-list">
             <div className="stats-header">
@@ -84,8 +103,8 @@ const Demographics = () => {
             <div className="demo-stats">
             {objSelected === 'race' ? 
             (Object.entries(resultData?.data.race).sort((a, b) => b[1] - a[1]).map(([raceName, percentage]) => (
-              <div className={`stat ${selectedStat === raceName ? 'selected-stat' : ''}`} key={raceName} onClick={() => setSelectedStat(raceName)}>
-                <img src={radio_button} alt="" className="stat-diamond" />
+              <div className={`stat ${selectedRace === raceName ? 'selected-stat' : ''}`} key={raceName} onClick={() => {setSelectedRace(raceName); setWheelPercent(percentage); setSelectedRacePercent(percentage)}}>
+                {selectedRace === raceName ? <img src={radio_white} alt="" className="stat-diamond" /> : <img src={radio_button} alt="" className="stat-diamond" />}
                 <div className="stat-text">
                   <span>{toTitleCase(raceName)}</span>
                   <span>{Math.floor(percentage * 100)} %</span>
@@ -94,8 +113,8 @@ const Demographics = () => {
             ))) : ''}
             {objSelected === 'age' ? 
             (Object.entries(resultData?.data.age).sort((a, b) => b[1] - a[1]).map(([ageName, percentage]) => (
-              <div className={`stat ${selectedStat === ageName ? 'selected-stat' : ''}`} key={ageName} onClick={() => setSelectedStat(ageName)}>
-                <img src={radio_button} className="stat-diamond" alt="" />
+              <div className={`stat ${selectedAge === ageName ? 'selected-stat' : ''}`} key={ageName} onClick={() => {setSelectedAge(ageName); setWheelPercent(percentage); setSelectedAgePercent(percentage)}}>
+                {selectedAge === ageName ? <img src={radio_white} className="stat-diamond" alt="" /> : <img src={radio_button} className="stat-diamond" alt="" />}
                 <div className="stat-text">
                   <span>{ageName}</span>
                   <span>{Math.floor(percentage * 100)} %</span>
@@ -104,8 +123,8 @@ const Demographics = () => {
             ))) : ''}
             {objSelected === 'gender' ? 
             (Object.entries(resultData?.data.gender).sort((a, b) => b[1] - a[1]).map(([genderName, percentage]) => (
-              <div className={`stat ${selectedStat === genderName ? 'selected-stat' : ''}`} key={genderName} onClick={() => setSelectedStat(genderName)}>
-                <img src={radio_button} className="stat-diamond" alt="" />
+              <div className={`stat ${selectedGender === genderName ? 'selected-stat' : ''}`} key={genderName} onClick={() => {setSelectedGender(genderName); setWheelPercent(percentage); setSelectedGenderPercent(percentage)}}>
+                {selectedGender === genderName ? <img src={radio_white} className="stat-diamond" alt="" /> : <img src={radio_button} className="stat-diamond" alt="" />}
                 <div className="stat-text">
                   <span>{genderName}</span>
                   <span>{Math.floor(percentage * 100)} %</span>
@@ -115,6 +134,7 @@ const Demographics = () => {
             </div>
           </div>
         </div>
+        <span className="dem-bottom-text">If A.I. estimate is wrong, select the correct one.</span>
     </>
   )
 }
