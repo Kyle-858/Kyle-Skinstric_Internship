@@ -5,6 +5,7 @@ import gallery from '../assets/gallery.svg'
 import camera from '../assets/camera.svg'
 import Loading from '../components/Loading.jsx'
 import axios from 'axios'
+import Camera from '../components/Camera.jsx'
 
 import './Upload.css'
 
@@ -12,16 +13,17 @@ const Upload = () => {
 
   const navigate = useNavigate()
   const fileInputRef = useRef(null)
+  const cameraInputRef = useRef(null)
+
   const [loading, setLoading] = useState(false)
+
+  const [showCamera, setShowCamera] = useState(false)
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
-
     setLoading(true)
-
     const reader = new FileReader()
-
     reader.onloadend = async () => {
       const base64Image = reader.result.split(',')[1]
       
@@ -41,12 +43,14 @@ const Upload = () => {
     }
     reader.readAsDataURL(file)
   }
+
+  
   
   return (
     <>
       {loading ? <Loading/> : <div className="upload-row">
         <div className="option-wrapper option-camera">
-          <img className="upload-option" src={camera} alt="" />
+          <img className="upload-option" src={camera} alt="" onClick={() => {setShowCamera(true); cameraInputRef.current.click()}}/>
         </div>
         <div className="option-wrapper option-gallery">
           <img className="upload-option" src={gallery} alt="" onClick={() => fileInputRef.current.click()}/>
@@ -59,6 +63,31 @@ const Upload = () => {
         ref={fileInputRef}
         onChange={handleFileUpload}
       />
+      <input
+        type="file"
+        accept="image/*"
+        capture="user"
+        onChange={handleFileUpload}
+        style={{ display: 'none' }}
+        ref={cameraInputRef}
+      />
+
+      {showCamera && (<Camera onCapture={async (base64Image) => {
+        setLoading(true)
+        try {
+          const res = await axios.post(
+            "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo",
+            { image: base64Image }
+          )
+          console.log('Image upload successful!', res.data)
+          localStorage.setItem('resultData', JSON.stringify(res.data))
+          navigate('/results')
+        } catch (err) {
+          console.error('Error uploading image:', err)
+        } finally {
+          setLoading(false)
+        }
+      }} />)}
 
         {loading ? '' : <div className="back" onClick={() => navigate(-1)}>
             <button className="back-btn">

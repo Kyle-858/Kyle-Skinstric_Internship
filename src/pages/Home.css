@@ -1,9 +1,15 @@
-.home {
-    width: 100vw;
+.home-row {
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.title-wrapper {
+    position: relative;
+    height: 240px;
+    width: 1200px;
+    max-width: 100vw;
 }
 
 .home-title {
@@ -14,16 +20,18 @@
     /* leading-trim: NONE; */
     line-height: 120px;
     letter-spacing: -7px;
-    max-width: 680px;
     text-align: center;
-    margin: 0 32px;
+    position: absolute;
+    left: 50%;
 }
 
 .title-top {
-    top: 31vh;
+    top: 0;
+    width: 680px;
 }
 .title-bottom {
-    top: 48vh;
+    bottom: 0;
+    width: 430px;
 }
 
 .about-text {

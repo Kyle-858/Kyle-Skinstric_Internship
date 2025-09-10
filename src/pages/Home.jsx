@@ -13,21 +13,11 @@ const Home = () => {
 
     const [hoverState, setHoverState] = useState(false)
 
-    const topTitleStyle = {
-        position: 'absolute',
-        left: '50%',
-        transform: hoverState ? 'translateX(-106%)' : 'translateX(-50%)',
-        transition: 'transform 300ms ease',
-        width: '100%',
-    };
-
-    const bottomTitleStyle = {
-        position: 'absolute',
-        left: '50%',
-        transform: hoverState ? 'translateX(-125%)' : 'translateX(-50%)',
-        transition: 'transform 300ms ease',
-        width: '100%',
-        textAlign: 'center',
+    const titleStyle = {
+        position: 'relative',
+        left: hoverState ? '0%' : '50%',
+        transform: hoverState ? 'translateX(0%)' : 'translateX(-50%)',
+        transition: 'all 300ms ease',
     };
 
     const leftBtnStyle = {
@@ -63,9 +53,11 @@ const Home = () => {
 
 
   return (
-    <div className="home">
-        <h1 className="home-title title-top" style={topTitleStyle}>Sophisticated</h1>
-        <h1 className="home-title title-bottom" style={bottomTitleStyle}>skincare</h1>
+    <div className="home-row">
+        <div className="title-wrapper">
+            <h1 className="home-title title-top" style={titleStyle}>Sophisticated</h1>
+            <h1 className="home-title title-bottom" style={titleStyle}>skincare</h1>
+        </div>
         <p className="about-text">Skinstric developed an A.I. that creates 
             <br/>a highly-personalised routine tailored to <br/>
             what your skin needs.</p>
