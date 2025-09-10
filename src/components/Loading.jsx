@@ -6,10 +6,10 @@ import rect_intro_3 from '../assets/rect_intro_3.svg'
 
 
 
-const Loading = () => {
+const Loading = ({ text }) => {
   return (
     <div className="loading-screen">
-      <span className="loading-text">PREPARING YOUR ANALYSIS...</span>
+      <span className="loading-text">{text || "LOADING..."}</span>
       <div className="load-rect loading-rect-1"></div>
       <div className="load-rect loading-rect-2"></div>
       <div className="load-rect loading-rect-3"></div>

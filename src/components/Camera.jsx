@@ -2,9 +2,10 @@ import React, { useRef, useState, useEffect } from 'react'
 import './Camera.css'
 import take_pic from '../assets/take_pic.svg'
 import cam_text from '../assets/cam_text.svg'
+import Loading from './Loading.jsx'
 
 
-const Camera = ({ onCapture }) => {
+const Camera = ({ loading, onCapture }) => {
 
     const videoRef = useRef(null)
     const canvasRef = useRef(null) 
@@ -55,7 +56,8 @@ const Camera = ({ onCapture }) => {
 
 
   return (
-    <div className="camera-wrapper">
+    <>
+    {loading ? <Loading text={'PREPARING YOUR ANALYSIS...'}/> : <div className="camera-wrapper">
         <video ref={videoRef} width="300" height="300" />
         <canvas ref={canvasRef} width="300" height="300" style={{ display: 'none' }} />
         <div className="capture-btn">
@@ -67,7 +69,8 @@ const Camera = ({ onCapture }) => {
             }} src={take_pic}/>
         </div>
         <img src={cam_text} alt="" className="cam_text"/>
-    </div>
+    </div>}
+    </>
   )
 }
 

@@ -82,7 +82,7 @@ const Upload = () => {
         <div className="modal-line"></div>
         <div className="modal-options">
           <span className="modal-option" onClick={() => setShowModal(false)}>DENY</span>
-          <span className="modal-option" onClick={() => setShowCamera(true)}>ALLOW</span>
+          <span className="modal-option" onClick={() => {setShowCamera(true); setShowModal(false)}}>ALLOW</span>
         </div>
       </div></>)}
 

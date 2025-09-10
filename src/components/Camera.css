@@ -43,3 +43,10 @@ video {
     bottom: 32px;
     width: 30vw;
 }
+
+.cam-load-screen {
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: white;
+}
