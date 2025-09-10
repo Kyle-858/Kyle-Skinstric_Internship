@@ -59,7 +59,7 @@ const Home = () => {
             <h1 className="home-title title-bottom" style={titleStyle}>skincare</h1>
         </div>
         <p className="about-text">Skinstric developed an A.I. that creates 
-            <br/>a highly-personalised routine tailored to <br/>
+            a highly-personalised routine tailored to
             what your skin needs.</p>
         <img className="rect rect-left" style={leftBtnStyle} src={rectangle_left} alt="" />
         <img className="rect rect-right" src={rectangle_right} alt="" />
@@ -79,6 +79,12 @@ const Home = () => {
                     <img src={arrow_right} alt="" style={arrowStyle}/>
                 </button>
             </Link>
+        </div>
+        <div className="mobile-btns">
+            <Link to="/intro">
+                <div className="mobile-btn mobile-btn-top">TAKE TEST</div>
+            </Link>
+            <div className="mobile-btn mobile-btn-bottom">DISCOVER A.I.</div>
         </div>
     </div>
   )
