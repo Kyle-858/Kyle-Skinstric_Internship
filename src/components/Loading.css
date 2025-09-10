@@ -25,14 +25,14 @@
     height: 360px;
     width: 360px;
     animation: spin 3s linear infinite;
-    animation-delay: 1s;
+    animation-delay: .1s;
 }
 
 .loading-rect-2 {
     height: 400px;
     width: 400px;
     animation: spin 3s linear infinite;
-    animation-delay: 2s;
+    animation-delay: .2s;
     opacity: 90%;
 }
 
@@ -40,7 +40,7 @@
     height: 440px;
     width: 440px;
     animation: spin 3s linear infinite;
-    animation-delay: 3s;
+    animation-delay: .3s;
     opacity: 80%;
 }
 

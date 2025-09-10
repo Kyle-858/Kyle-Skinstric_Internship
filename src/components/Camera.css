@@ -22,11 +22,20 @@ video {
     position: absolute;
     right: 32px;
     height: 62px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
-.capture-btn:active {
+.capture-btn-icon:hover {
+    cursor: pointer;
+
+}
+.capture-btn-icon:active {
     transform: scale(96%);
     opacity: 80%;
+}
+.capture-btn-text {
+    color: white;
+    margin-right: 16px;
 }
 
 .cam_text {

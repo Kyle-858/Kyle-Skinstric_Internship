@@ -138,6 +138,10 @@ const Demographics = () => {
             </div>
           </div>
         </div>
+        <div className="dem-btns">
+          <div className="dem-btn dem-bnt-reset" onClick={() => {setSelectedRace(topRace); setSelectedAge(topAge); setSelectedGender(topSex);}}>RESET</div>
+          <div className="dem-btn dem-btn-confirm" onClick={() => navigate(-1)}>CONFIRM</div>
+        </div>
         <span className="dem-bottom-text">If A.I. estimate is wrong, select the correct one.</span>
     </>
   )

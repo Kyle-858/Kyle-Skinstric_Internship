@@ -15,7 +15,15 @@ const Camera = ({ onCapture }) => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true })
                 videoRef.current.srcObject = stream
-                videoRef.current.play()
+
+                videoRef.current.onloadedmetadata = () => {
+                    videoRef.current.play().catch(err => {
+                        console.warn('play erro:r', err)
+                        setTimeout(() => {
+                            videoRef.current.play().catch(e => console.error('still failed:', err))
+                        }, 500)
+                    })
+                }
                 setStreaming(true)
             } catch  (err) {
                 console.error('camera access denied', err)
@@ -25,6 +33,7 @@ const Camera = ({ onCapture }) => {
         return () => {
             if (videoRef.current?.srcObject) {
                 videoRef.current.srcObject.getTracks().forEach(track => track.stop())
+                videoRef.current.srcObject = null
             }
         }
     }, [])
@@ -36,11 +45,27 @@ const Camera = ({ onCapture }) => {
         onCapture(base64Image)
     }
 
+    const closeCamera = () => {
+        const stream = videoRef.current?.srcObject
+        if (stream && stream instanceof MediaStream) {
+            videoRef.current.srcObject.getTracks().forEach(track => track.stop())
+            videoRef.current.srcObject = null
+        }
+    }
+
+
   return (
     <div className="camera-wrapper">
-      <video ref={videoRef} width="300" height="300" />
-      <canvas ref={canvasRef} width="300" height="300" style={{ display: 'none' }} />
-      <img className="capture-btn" onClick={handleCapture} src={take_pic}/>
+        <video ref={videoRef} width="300" height="300" />
+        <canvas ref={canvasRef} width="300" height="300" style={{ display: 'none' }} />
+        <div className="capture-btn">
+            <span className="capture-btn-text">TAKE PICTURE</span>
+            <img className="capture-btn-icon" onClick={async () => {
+                await handleCapture()
+                setStreaming(false)
+                closeCamera()
+            }} src={take_pic}/>
+        </div>
         <img src={cam_text} alt="" className="cam_text"/>
     </div>
   )

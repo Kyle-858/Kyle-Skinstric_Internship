@@ -19,6 +19,8 @@ const Upload = () => {
 
   const [showCamera, setShowCamera] = useState(false)
 
+  const [showModal, setShowModal] = useState(false)
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -50,7 +52,7 @@ const Upload = () => {
     <>
       {loading ? <Loading/> : <div className="upload-row">
         <div className="option-wrapper option-camera">
-          <img className="upload-option" src={camera} alt="" onClick={() => {setShowCamera(true); cameraInputRef.current.click()}}/>
+          <img className="upload-option" src={camera} alt="" onClick={() => setShowModal(true)}/>
         </div>
         <div className="option-wrapper option-gallery">
           <img className="upload-option" src={gallery} alt="" onClick={() => fileInputRef.current.click()}/>
@@ -63,14 +65,16 @@ const Upload = () => {
         ref={fileInputRef}
         onChange={handleFileUpload}
       />
-      <input
-        type="file"
-        accept="image/*"
-        capture="user"
-        onChange={handleFileUpload}
-        style={{ display: 'none' }}
-        ref={cameraInputRef}
-      />
+      
+      {showModal && (<><div className="modal-overlay"></div>
+      <div className="modal">
+        <span className="modal-text">ALLOW A.I. TO ACCESS YOUR CAMERA</span>
+        <div className="modal-line"></div>
+        <div className="modal-options">
+          <span className="modal-option" onClick={() => setShowModal(false)}>DENY</span>
+          <span className="modal-option" onClick={() => setShowCamera(true)}>ALLOW</span>
+        </div>
+      </div></>)}
 
       {showCamera && (<Camera onCapture={async (base64Image) => {
         setLoading(true)
