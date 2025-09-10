@@ -21,6 +21,13 @@ const Upload = () => {
 
   const [showModal, setShowModal] = useState(false)
 
+  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 })
+  const handleClick = (e) => {
+    setModalPosition({ x: e.clientX, y: e.clientY })
+    setShowModal(true)
+  }
+
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -52,7 +59,7 @@ const Upload = () => {
     <>
       {loading ? <Loading/> : <div className="upload-row">
         <div className="option-wrapper option-camera">
-          <img className="upload-option" src={camera} alt="" onClick={() => setShowModal(true)}/>
+          <img className="upload-option" src={camera} alt="" onClick={handleClick}/>
         </div>
         <div className="option-wrapper option-gallery">
           <img className="upload-option" src={gallery} alt="" onClick={() => fileInputRef.current.click()}/>
@@ -67,7 +74,10 @@ const Upload = () => {
       />
       
       {showModal && (<><div className="modal-overlay"></div>
-      <div className="modal">
+      <div className="modal" style={{
+        position: 'absolute',
+        top: modalPosition.y,
+        left: modalPosition.x,}}>
         <span className="modal-text">ALLOW A.I. TO ACCESS YOUR CAMERA</span>
         <div className="modal-line"></div>
         <div className="modal-options">
