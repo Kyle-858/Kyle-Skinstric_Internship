@@ -206,3 +206,12 @@
 .proceed:hover .proceed-btn {
     transform: rotate(45deg) scale(1.2);
 }
+
+@media(max-width: 400px) {
+    .name-input {
+        font-size: 30px;
+    }
+    .dynamic-underline {
+        max-width: 280px;
+    }
+}

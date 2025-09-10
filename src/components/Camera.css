@@ -41,7 +41,7 @@ video {
 .cam_text {
     position: absolute;
     bottom: 32px;
-    width: 30vw;
+    width: 480px;;
 }
 
 .cam-load-screen {
@@ -49,4 +49,27 @@ video {
     height: 100vh;
     z-index: 100;
     background-color: white;
+}
+
+@media(max-width: 760px) {
+    .capture-btn-text {
+        display: none;
+    }
+}
+@media(max-width: 540px) {
+    .cam_text {
+        bottom: 24px;
+        width: 280px;
+    }
+    .capture-btn {
+        bottom: 72px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .capture-btn-icon {
+        bottom: 32px;
+    }
 }
